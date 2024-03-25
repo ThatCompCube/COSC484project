@@ -55,15 +55,6 @@ p {
     margin-bottom: 20px;
 }
 
-#agree-label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-#agree-checkbox {
-    margin-right: 5px;
-}
-
 #continue-button {
     padding: 10px 20px;
     background-color: #007bff;
@@ -95,7 +86,7 @@ h1 {
 }
 
 p {
-    color: #666;
+    color: #000000;
     line-height: 1.6;
 }
 
