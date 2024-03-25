@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERMS OF SERVICE</title>
+    <link rel="stylesheet" href="registration.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>TERMS OF SERVICE</h1>
+        <div id="tos-text">
+            <!-- Add your Terms of Service content here -->
+            <p>This is where you'll find the Terms of Service agreement.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...</p>
+            <!-- Add more content as needed -->
+        </div>
+        <label id="agree-label">
+            <input type="checkbox" id="agree-checkbox"> I agree to the Terms of Service
+        </label>
+        <div class="button-container">
+            <button class="button" onclick="goBack()">Go Back</button>
+            <button class="button" onclick="continueToMainPage()">Continue</button>
+        </div>
+    </div>
+
+    <script>
+        function continueToMainPage() {
+            var agreeCheckbox = document.getElementById("agree-checkbox");
+            if (agreeCheckbox.checked) {
+                // Redirect to mainPage.html
+                window.location.href = "mainPage.html";
+            } else {
+                alert("Please agree to the Terms of Service to continue.");
+            }
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+
+</html>
