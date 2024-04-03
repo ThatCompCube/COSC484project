@@ -5,16 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
-    <link rel="stylesheet" href="registration.css">
+    <link rel="stylesheet" href="mainPage.css">
     <link rel="icon" href="Favicon 1.png" type="image/png">
 </head>
 
-<body>
-
+<body>   
     <div class="container">
-        <h1>Welcome to the Main Page</h1>
-        <p>This is the main page content.</p>
         <!-- Add more content as needed -->
+        <header>
+            <h1>Instructor Insight</h1>
+            <form id="school-search-form">
+                <input type="text" id="school-search-input" placeholder="Search for a school">
+                <button type="Submit">Search Schools</button>
+            </form>
+
+            <form id="professor-search-form">
+                <input type="text" id="professor-search-input" placeholder="Search for a professor">
+                <button type="Submit">Search Professors</button>
+            </form>
+
+            
+        </header>
+
+        <div id="results-container"></div>
 
         <div class="button-container">
             <button class="button" onclick="goBack()">Go Back</button>
@@ -22,6 +35,31 @@
     </div>
 
     <script>
+        document.getElementById('school-search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var searchTerm = document.getElementById('school-search-input').value;
+            displaySchoolSearchResults(searchTerm);
+        });
+
+        document.getElementById('professor-search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var searchTerm = document.getElementById('professor-search-input').value;
+            displayProfessorSearchResults(searchTerm);
+        });
+
+        function displaySearchResults(searchTerm) {
+            console.log('Search term: ', searchTerm);
+        }
+
+        function displaySchoolSearchResults(searchTerm) {
+            console.log('School search term: ', searchTerm);
+            document.getElementById('professor-search-term').style.display = 'block';
+        }
+
+        function displayProfessorSearchResults(searchTerm) {
+            console.log('Professor search term: ', searchTerm);
+        }
+
         function goBack() {
             window.history.back();
         }
