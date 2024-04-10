@@ -37,13 +37,13 @@
             <label>School Attending:</label>
             <div class="radio-container">
                 <input type="radio" id="school1" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #FFBB00, #3C3C3C)')">
-                <label for="school1">TU</label>
+                <label>TU</label>
                 <input type="radio" id="school2" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #E03A3E, #000000)')">
-                <label for="school1">UMD</label>
+                <label>UMD</label>
                 <input type="radio" id="school3" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #fdb515, #000000)')">
-                <label for="school1">UMBC</label>
+                <label>UMBC</label>
                 <input type="radio" id="school4" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #73B0E4, #231F20)')">
-                <label for="school1">JHU</label>
+                <label>JHU</label>
             </div>
         </div>
         
@@ -81,6 +81,7 @@
 
         function changeBackgroundColor(color) {
             document.body.style.backgroundImage = color;
+            localStorage.setItem('selectedColor', color);
         }
 
         // Function to redirect to mainPage.html

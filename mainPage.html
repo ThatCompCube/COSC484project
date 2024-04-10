@@ -9,7 +9,7 @@
     <link rel="icon" href="Favicon 1.png" type="image/png">
 </head>
 
-<body>   
+<body onload="loadBackgroundColor()">   
     <div class="container">
         <!-- Add more content as needed -->
         <header>
@@ -35,6 +35,13 @@
     </div>
 
     <script>
+        function loadBackgroundColor() {
+            var selectedColor = localStorage.getItem('selectedColor');
+            if (selectedColor) {
+                document.body.style.backgroundImage = selectedColor;
+            }
+        }
+
         document.getElementById('school-search-form').addEventListener('submit', function(event) {
             event.preventDefault();
             var searchTerm = document.getElementById('school-search-input').value;
