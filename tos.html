@@ -101,7 +101,7 @@
     </style>
 </head>
 
-<body>
+<body onload="loadBackgroundColor()">
     <div class="container">
         <h1>TERMS OF SERVICE</h1>
         <div id="tos-text">
@@ -172,9 +172,16 @@
 </div>
 
 <script>
-function goBack() {
-    window.history.back();
-}
+    function loadBackgroundColor() {
+            var selectedColor = localStorage.getItem('selectedColor');
+            if (selectedColor) {
+                document.body.style.backgroundImage = selectedColor;
+            }
+        }
+        
+    function goBack() {
+      window.history.back();
+    }
 
 function continueToMainPage() {
     var agreeCheckbox = document.getElementById("agree-checkbox");
