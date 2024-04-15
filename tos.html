@@ -5,53 +5,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TERMS OF SERVICE</title>
-    <link rel="icon" href="Favicon 1.png" type="image/png">
+    <link rel="icon" href="favicon.png" type="image/png">
     <style>
-        body,
-        html {
-            height: 95vh;
+        body, html {
+            height: 100%;
             margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
         }
 
         .container {
-            height: 89vh;
-            width: 83vh;
+            width: 80%;
+            max-width: 800px;
+            max-height: 90vh;
             padding: 20px;
-            box-sizing: border-box;
             border: 8px solid black;
+            background-color: white;
+            overflow: auto; /* Allowing scrolling within the container */
             display: flex;
             flex-direction: column;
-            margin-left: 63vh;
-            overflow: hidden; /* Hide overflow for the container */
+            margin: 20px 0; /* Adds space top and bottom */
         }
 
         #tos-text {
-            flex: 1;
-            border: 3px solid gray;
+            flex-grow: 1;
             padding: 20px;
+            overflow-y: auto; /* Ensures only vertical scroll */
+            border: 3px solid gray;
             box-sizing: border-box;
-            overflow-y: auto; /* Enable vertical scrolling only for tos-text */
         }
 
         h1 {
-            margin-top: 10px;
+            margin-top: 0;
             text-align: center;
         }
 
         h3 {
-            text-align: left;
+            color: #333;
+            margin-top: 10px;
         }
 
         p {
             text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #005fa3;
+        }
+
+        #agree-label {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #agree-checkbox {
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                height: auto;
+                padding: 10px;
+                border-width: 4px;
+            }
+
+            .button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
         }
     </style>
 </head>
 
-<body onload="loadBackgroundColor()">
-    <h1>TERMS OF SERVICE</h1>
-    <div class="container">    
+<body>
+    <div class="container">
+        <h1>TERMS OF SERVICE</h1>
         <div id="tos-text">
+
 <h3>1. Acceptance of Terms:</h3>
 <p>-By using Instructor Insight, you agree to comply with these Terms and all applicable laws and regulations. These Terms constitute a legally binding agreement between you and Instructor Insight.</p>
 </p>-We reserve the right to modify or update these Terms at any time without prior notice. Continued use of our services after such modifications constitutes your acceptance of the revised Terms.</p>
@@ -107,37 +161,29 @@
 <h3>15. Contact Us:</h3>       
     <p>- If you have any questions or concerns regarding these Terms, please <a href="mailto:InstructorInsight1@gmail.com">contact us</a>.</p>
 
-    <label id="agree-label">
-        <input type="checkbox" id="agree-checkbox"> I agree to the Terms of Service
-    </label>
-    <div class="button-container">
-        <button class="button" onclick="goBack()">Go Back</button>
-        <button class="button" onclick="continueToMainPage()">Continue</button>
-    </div>
+</div>
+<label id="agree-label">
+    <input type="checkbox" id="agree-checkbox"> I agree to the Terms of Service
+</label>
+<div class="button-container">
+    <button class="button" onclick="goBack()">Go Back</button>
+    <button class="button" onclick="continueToMainPage()">Continue</button>
+</div>
 </div>
 
 <script>
-    function loadBackgroundColor() {
-            var selectedColor = localStorage.getItem('selectedColor');
-            if (selectedColor) {
-                document.body.style.backgroundImage = selectedColor;
-            }
-        }
-        
-    function continueToMainPage() {
-        var agreeCheckbox = document.getElementById("agree-checkbox");
-        if (agreeCheckbox.checked) {
-            window.location.href = "mainPage.html";
-        } else {
-            alert("Please agree to the Terms of Service to continue.");
-        }
-    }
+function goBack() {
+    window.history.back();
+}
 
-    function goBack() {
-        window.history.back();
+function continueToMainPage() {
+    var agreeCheckbox = document.getElementById("agree-checkbox");
+    if (agreeCheckbox.checked) {
+        window.location.href = "mainPage.html";
+    } else {
+        alert("Please agree to the Terms of Service to continue.");
     }
+}
 </script>
-
 </body>
-
 </html>
