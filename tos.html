@@ -171,26 +171,27 @@
 </div>
 
 <script>
-function loadBackgroundColor() {
-    var selectedColor = localStorage.getItem('selectedColor');
-    if (selectedColor) {
-        document.body.style.backgroundImage = selectedColor;
+    function loadBackgroundColor() {
+        var selectedColor = localStorage.getItem('selectedColor');
+        if (selectedColor) {
+            document.body.style.backgroundImage = selectedColor;
+        }
     }
-}
 
-function goBack() {
-    window.history.back();
-}
-
-function continueToMainPage() {
-    var agreeCheckbox = document.getElementById("agree-checkbox");
-    if (agreeCheckbox.checked) {
-        window.location.href = "mainPage.html";
-    } else {
-        alert("Please agree to the Terms of Service to continue.");
+    function goBack() {
+        window.history.back();
     }
-}
+
+    function continueToMainPage() {
+        var agreeCheckbox = document.getElementById("agree-checkbox");
+        if (agreeCheckbox.checked) {
+            window.location.href = "mainPage.html";
+        } else {
+            alert("Please agree to the Terms of Service to continue.");
+        }
+    }
 </script>
+
 </body>
 
 </html>
