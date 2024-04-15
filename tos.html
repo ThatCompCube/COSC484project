@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERMS OF SERVICE</title>
+    <link rel="icon" href="Favicon 1.png" type="image/png">
+    <style>
+        body,
+        html {
+            height: 95vh;
+            margin: 0;
+        }
+
+        .container {
+            height: 89vh;
+            width: 83vh;
+            padding: 20px;
+            box-sizing: border-box;
+            border: 8px solid black;
+            display: flex;
+            flex-direction: column;
+            margin-left: 63vh;
+            overflow: hidden; /* Hide overflow for the container */
+        }
+
+        #tos-text {
+            flex: 1;
+            border: 3px solid gray;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto; /* Enable vertical scrolling only for tos-text */
+        }
+
+        h1 {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        h3 {
+            text-align: left;
+        }
+
+        p {
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body onload="loadBackgroundColor()">
+    <h1>TERMS OF SERVICE</h1>
+    <div class="container">    
+        <div id="tos-text">
+<h3>1. Acceptance of Terms:</h3>
+<p>-By using Instructor Insight, you agree to comply with these Terms and all applicable laws and regulations. These Terms constitute a legally binding agreement between you and Instructor Insight.</p>
+</p>-We reserve the right to modify or update these Terms at any time without prior notice. Continued use of our services after such modifications constitutes your acceptance of the revised Terms.</p>
+                
+<h3>2. User Conduct:</h3>    
+</p>-You agree to use our services only for lawful purposes and in accordance with these Terms. You may not use our services to engage in any illegal or unauthorized activity.</p>
+</p>-Harassment of any kind, including but not limited to verbal abuse, threats, or cyberbullying, is strictly prohibited. This includes harassment of other users, instructors, or moderators.</p>
+</p>-Users are prohibited from using offensive language or engaging in hate speech in any form of communication on the website.                    
+</p>-Organized review bombing or any attempt to manipulate ratings or reviews on the website is not allowed and will result in immediate account termination.</p>
+                
+<h3>3. Account Registration:</h3>         
+</p>-You must create an account to access certain features of Instructor Insight. When registering for an account, you agree to provide accurate and complete information.</p>
+</p>-You are responsible for maintaining the confidentiality of your account and password, and for restricting access to your account. You agree to accept responsibility for all activities that occur under your account.</p>
+                
+<h3>4. Intellectual Property:</h3>           
+</p>-All content provided on Instructor Insight, including text, graphics, logos, button icons, images, audio clips, digital downloads, data compilations, and software, is the property of Instructor Insight or its content suppliers and is protected by international copyright laws.</p>
+</p>-You may not modify, reproduce, distribute, display, or perform the content on our website without prior written consent from Instructor Insight.</p>
+                
+<h3>5. Termination of Account:</h3>          
+</p>-Instructor Insight reserves the right to terminate or suspend your account and access to our services at any time and for any reason, including violation of these Terms or unlawful conduct.</p>
+</p>-In the event of termination, you will no longer have access to your account or any associated content.</p>
+                
+<h3>6. Disclaimer of Warranties:</h3>            
+</p>-The information and materials provided on Instructor Insight are provided on an "as is" and "as available" basis without any warranties of any kind, either express or implied.</p>
+</p>-Instructor Insight does not warrant the accuracy, completeness, or reliability of any content on the website or the results obtained from using our services.</p>
+                
+<h3>7. Limitation of Liability:</h3>            
+</p>-Instructor Insight shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of our services.</p>
+</p>-In no event shall Instructor Insight's total liability to you for all damages exceed the amount paid by you, if any, for accessing our services.</p>
+                
+<h3>8. Indemnification:</h3>            
+</p>-You agree to indemnify, defend, and hold harmless Instructor Insight, its affiliates, and their respective officers, directors, employees, and agents from and against any and all claims, liabilities, damages, losses, or expenses arising out of or in any way related to your use of our services or your breach of these Terms.</p>
+                
+<h3>9. Governing Law:</h3>         
+</p>-These Terms shall be governed by and construed in accordance with the laws of [Jurisdiction], without regard to its conflict of law principles.</p>
+                
+<h3>10.Dispute Resolution:</h3>         
+</p>-Any dispute arising out of or relating to these Terms or your use of our services shall be resolved exclusively through binding arbitration administered by the Arbitration Association in accordance with its rules and procedures.</p>
+                
+<h3>11.Changes to Terms:</h3>         
+</p>-Instructor Insight reserves the right to modify or revise these Terms at any time. We will notify you of any material changes to these Terms by posting a notice on our website or by sending you an email.</p>
+</p>-Your continued use of our website after any such changes constitutes your acceptance of the new Terms.</p>
+                
+<h3>12. Severability:</h3>       
+</p>-If any provision of these Terms is found to be invalid or unenforceable, that provision shall be enforced to the maximum extent permitted by law, and the remaining provisions shall remain in full force and effect.</p>
+                
+<h3>13. Waiver:</h3>          
+</p>-The failure of Instructor Insight to enforce any right or provision of these Terms shall not be deemed a waiver of such right or provision.</p>
+                
+<h3>14. Entire Agreement:</h3>          
+</p>-These Terms constitute the entire agreement between you and Instructor Insight regarding the use of our services, superseding any prior agreements between you and Instructor Insight.</p>
+                
+<h3>15. Contact Us:</h3>       
+    <p>- If you have any questions or concerns regarding these Terms, please <a href="mailto:InstructorInsight1@gmail.com">contact us</a>.</p>
+
+    <label id="agree-label">
+        <input type="checkbox" id="agree-checkbox"> I agree to the Terms of Service
+    </label>
+    <div class="button-container">
+        <button class="button" onclick="goBack()">Go Back</button>
+        <button class="button" onclick="continueToMainPage()">Continue</button>
+    </div>
+</div>
+
+<script>
+    function loadBackgroundColor() {
+            var selectedColor = localStorage.getItem('selectedColor');
+            if (selectedColor) {
+                document.body.style.backgroundImage = selectedColor;
+            }
+        }
+        
+    function continueToMainPage() {
+        var agreeCheckbox = document.getElementById("agree-checkbox");
+        if (agreeCheckbox.checked) {
+            window.location.href = "mainPage.html";
+        } else {
+            alert("Please agree to the Terms of Service to continue.");
+        }
+    }
+
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+</body>
+
+</html>
