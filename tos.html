@@ -11,7 +11,6 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -101,7 +100,7 @@
     </style>
 </head>
 
-<body>
+<body onload="loadBackgroundColor()">
     <div class="container">
         <h1>TERMS OF SERVICE</h1>
         <div id="tos-text">
@@ -172,6 +171,13 @@
 </div>
 
 <script>
+function loadBackgroundColor() {
+    var selectedColor = localStorage.getItem('selectedColor');
+    if (selectedColor) {
+        document.body.style.backgroundImage = selectedColor;
+    }
+}
+
 function goBack() {
     window.history.back();
 }
@@ -186,4 +192,5 @@ function continueToMainPage() {
 }
 </script>
 </body>
+
 </html>
