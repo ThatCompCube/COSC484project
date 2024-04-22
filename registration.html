@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <form id="registrationForm" action="registrationCompleted" method="GET" onsubmit="return validateForm()">
+    <form id="registrationForm" method="GET">
         <h1>Registration</h1>
         <div class="form-group">
             <label for="firstName">First name:</label>
@@ -48,45 +48,54 @@
         </div>
         
         <div class="form-group">
-            <input type="button" id="register" value="Register" onclick="redirectToMainPage()" />
+            <input type="submit" id="register" value="Register" />
         </div>
     </form>
 
     <script>
-        function validateForm() {
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
             var passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[_*\\,.!])[a-zA-Z\d_*\\,.!]+$/;
-            var firstName = document.getElementById("firstName").value;
-            var lastName = document.getElementById("lastName").value;
+            var firstName = document.getElementById("firstName").value.trim();
+            var lastName = document.getElementById("lastName").value.trim();
+            var email = document.getElementById("email").value.trim();
             var password = document.getElementById("password").value;
             var confirmPassword = document.getElementById("confirmPassword").value;
+            var schoolChecked = document.querySelector('input[name="school"]:checked');
 
+            // Check if any field is empty
+            if (firstName === "" || lastName === "" || email === "" || password === "" || confirmPassword === "" || !schoolChecked) {
+                alert("Please fill in all fields.");
+                return false;
+            }
+
+            // Check if email is valid
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.match(emailRegex)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            // Check if passwords match
             if (password !== confirmPassword) {
-                alert("Please ensure the passwords match");
+                alert("Please ensure the passwords match.");
                 return false;
             }
 
+            // Check if password meets requirements
             if (!password.match(passwordRegex)) {
-                alert("Password must contain at least one letter, one number, and one special symbol");
+                alert("Password must contain at least one letter, one number, and one special symbol.");
                 return false;
             }
 
-            return true;
-        }
-
-        document.getElementById("registrationForm").addEventListener("submit", function(event) {
-            if (!validateForm()) {
-                event.preventDefault();
-            }
+            // Redirect to the terms of service page
+            window.location.href = "tos.html";
         });
 
         function changeBackgroundColor(color) {
             document.body.style.backgroundImage = color;
             localStorage.setItem('selectedColor', color);
-        }
-
-        // Function to redirect to mainPage.html
-        function redirectToMainPage() {
-            window.location.href = "tos.html";
         }
     </script>
 
