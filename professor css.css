@@ -1,0 +1,116 @@
+
+
+.FirstHalf {
+  padding: 0 20px; /* Padding to create space between columns */
+  background-color: #f0f0f0; /* Background color to create border-like appearance */
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.ProfessorInfo{
+  width: calc(50% - 20px); /* Set width for each column */
+  float: left;
+  margin-right: 20px; /* Margin to create space between columns */
+  background-color: #fff; /* Background color of columns */
+  padding: 20px; /* Padding for content within columns */
+  box-sizing: border-box;
+
+}
+
+.star-rating {
+    width: 100%; /* Set width for each column */
+   /*  float: right;
+    margin-right: 20px; /* Margin to create space between columns */
+    background-color: #fff; /* Background color of columns */
+    padding: 20px; /* Padding for content within columns */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    text-align: center;
+  } 
+  
+  .star-rating input {
+    display: none;
+  }
+  
+  .star-rating label {
+    font-size: 25px;
+    color: #ccc;
+    float: right;
+    cursor: pointer;
+  }
+
+  .star-rating label:before {
+    content: '\2605';
+  }
+  
+  .star-rating input:checked ~ label {
+    color: #f90;
+  }
+
+  .star-rating {
+    font-size: 30px; /* Adjust font size as needed */
+    color: #ccc; /* Default star color */
+  }
+  
+  .star-rating span {
+    color: gold; /* Gold star color */
+  }
+
+  .percentage {
+    font-size: 24px; /* Set font size */
+    text-align: center;
+  }
+  
+  .recommendation {
+    margin-top: 5px; /* Add margin to separate from percentage */
+    text-align: center;
+  }
+
+  
+
+ #ReviewSection{
+
+   border-style: none; 
+   display: block;
+
+}
+
+.ReviewList {
+  list-style: none;
+   /* Allow items to wrap onto the next line */
+}
+
+.ReviewList li {
+  margin-bottom: 20px; /* Add margin between each review */
+  border: 1px solid #ccc; /* Add border for better separation */
+  padding: 10px; /* Add padding to each review item */
+}
+
+.ReviewInfo{
+  display: block;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+} 
+
+.RatingHeader{
+ margin: 5px 0px 10px;
+ font-size: 20px;
+}
+
+.courseMeta{
+  margin: 5px 0px 10px;
+}
+
+.Comment{
+  margin: 5px 0px 10px;
+}
+
+
+
+
+
+
