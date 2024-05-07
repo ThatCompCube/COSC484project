@@ -64,7 +64,7 @@ ratingPercent();
 
 function createUniversityLink() {
   var temp = 2;
-
+  //temp = profdata.school; Get data from database here
   if (temp === 1) {
     var link = document.createElement("a");
     link.href = "https://towson.edu";
@@ -74,6 +74,21 @@ function createUniversityLink() {
     var link = document.createElement("a");
     link.href = "https://morgan.edu";
     link.textContent = "Morgan State University";
+    return link;
+  } else if (temp == 3) {
+    var link = document.createElement("a");
+    link.href = "https://umd.edu/";
+    link.textContent = "University of Maryland";
+    return link;
+  } else if (temp == 4) {
+    var link = document.createElement("a");
+    link.href = "https://umbc.edu/";
+    link.textContent = "University of Maryland, Baltimore County";
+    return link;
+  } else if (temp == 5) {
+    var link = document.createElement("a");
+    link.href = "https://www.jhu.edu/";
+    link.textContent = "John Hopkins University";
     return link;
   }
 }
