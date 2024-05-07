@@ -10,14 +10,20 @@
 </head>
 
 <body onload="loadBackgroundColor()">   
+    
     <div class="container">
         <!-- Add more content as needed -->
         <header>
             <h1>Instructor Insight</h1>
             <form id="school-search-form">
-                <input type="text" id="school-search-input" placeholder="Search for a school">
+                <input type="text" id="school-search-input" class="schoolInput" placeholder="Search for a school">
                 <button type="Submit">Search Schools</button>
             </form>
+            <div class="school-container">
+                <ul class="school-list" id="list">
+
+                </ul>
+            </div>
 
             <form id="professor-search-form">
                 <input type="text" id="professor-search-input" placeholder="Search for a professor">
@@ -88,6 +94,59 @@
         }
         function goRegistration(){
             window.location.href ="registration.html"
+        }
+
+        const schools = [
+            { name: 'Towson University'},
+            { name: 'University of Maryland'},
+            { name: 'University of Maryland, Baltimore County'},
+            { name: 'John Hopkins University'},
+            { name: 'Morgan State University'}
+        ]
+
+        const searchInput = document.querySelector('.schoolInput')
+        searchInput.addEventListener("input", (e) =>{
+            let value = e.target.value
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+                
+                setList(schools.filter(school => {
+                    return school.name.trim().toLowerCase().includes(value)
+                }))
+            }
+            else{
+                clearList()
+            }
+        })
+
+        function setList(results){
+            clearList()
+            for (const schools of results){
+                const resultItem = document.createElement('li')
+                resultItem.classList.add('school-item')
+                const text = document.createTextNode(schools.name)
+                resultItem.appendChild(text)
+                list.appendChild(resultItem)
+            }
+
+            if (results.length === 0 ){
+                noResults()
+            }
+        }
+
+        function noResults(){
+            const error = document.createElement('li')
+            error.classList.add('error-message')
+            const text = document.createTextNode('No results found.')
+            error.appendChild(text)
+            list.appendChild(error)
+        }
+
+        function clearList(){
+            while (list.firstChild){
+                list.removeChild(list.firstChild)
+            }
         }
     </script>
 
