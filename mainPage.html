@@ -7,6 +7,46 @@
     <title>Main Page</title>
     <link rel="stylesheet" href="mainPage.css">
     <link rel="icon" href="Favicon 1.png" type="image/png">
+    <style>
+        /* Additional styles for the side window */
+        .side-window {
+            position: fixed;
+            top: 0;
+            right: -400px; /* Initially hidden */
+            width: 400px; /* Adjust width as needed */
+            height: 100%;
+            background-color: #f0f0f0;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .side-window.show {
+            right: 0;
+        }
+
+        /* Additional styles for registration info */
+        #registration-info {
+            display: none;
+        }
+
+        #registration-info.show {
+            display: block;
+        }
+
+        #registration-info h2 {
+            margin-bottom: 10px;
+        }
+
+        #registration-info p {
+            margin-bottom: 5px;
+        }
+
+        #registration-info button {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body onload="loadBackgroundColor()">   
@@ -37,16 +77,20 @@
 
         <!-- This is new, Added a login page and admin login page -->
         <div class="button-container">
-            <button class="button" onclick="goRegistration()">Register</button>
-
-            <button class="button" onclick="goLogin()">Login</button>
-
-            <button class="button" onclick="goAdminLogin()">Admin Login</button>
+            <button class="button" onclick="toggleRegistrationInfo()">Show Registration Info</button>
         </div>
         <div class="button-container">
             <button class="button" onclick="goBack()">Go Back</button>
         </div>
 
+    </div>
+
+    <!-- Side window for registration info -->
+    <div id="registration-info" class="side-window">
+        <h2>PROFILE</h2>
+        <p id="profile-name"></p>
+        <p id="profile-email"></p>
+        <button onclick="signOut()">Sign out</button>
     </div>
 
     <script>
@@ -55,6 +99,23 @@
             if (selectedColor) {
                 document.body.style.backgroundImage = selectedColor;
             }
+        }
+
+        function toggleRegistrationInfo() {
+            var registrationInfoWindow = document.getElementById('registration-info');
+            registrationInfoWindow.classList.toggle('show');
+            
+            // Fill profile information
+            var firstName = localStorage.getItem('firstName');
+            var lastName = localStorage.getItem('lastName');
+            var email = localStorage.getItem('email');
+            document.getElementById('profile-name').textContent = "Name: " + firstName + " " + lastName;
+            document.getElementById('profile-email').textContent = "Email: " + email;
+        }
+
+        function signOut() {
+            // Redirect back to the registration page
+            window.location.href = "registration.html";
         }
 
         document.getElementById('school-search-form').addEventListener('submit', function(event) {
@@ -85,17 +146,7 @@
         function goBack() {
             window.history.back();
         }
-        /* This is the new function, directs to admin login and login page */
-        function goAdminLogin(){
-            window.location.href="adminLogin.html"
-        }
-        function goLogin(){
-            window.location.href ="login.html"
-        }
-        function goRegistration(){
-            window.location.href ="registration.html"
-        }
-
+        
         const schools = [
             { name: 'Towson University'},
             { name: 'University of Maryland'},

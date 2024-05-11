@@ -91,6 +91,11 @@
                 return false;
             }
 
+            // Store registration information in local storage
+            localStorage.setItem('firstName', firstName);
+            localStorage.setItem('lastName', lastName);
+            localStorage.setItem('email', email);
+
             // Redirect to the terms of service page
             window.location.href = "tos.html";
         });
