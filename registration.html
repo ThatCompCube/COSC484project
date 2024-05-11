@@ -11,6 +11,8 @@
 </head>
 
 <body>
+    <div id="logoContainer"></div>
+
     <form id="registrationForm" method="GET">
         <h1>Registration</h1>
         <div class="form-group">
@@ -23,7 +25,7 @@
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="text" id="email" />
+            <input type="text" id="email" /> 
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
@@ -36,16 +38,23 @@
         <div class="form-group">
             <label>School Attending:</label>
             <div class="radio-container">
-                <input type="radio" id="school1" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #FFBB00, #3C3C3C)')">
-                <label>TU</label>
-                <input type="radio" id="school2" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #E03A3E, #000000)')">
-                <label>UMD</label>
-                <input type="radio" id="school3" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #fdb515, #000000)')">
+                <input type="radio" id="school1" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #FFBB00, #3C3C3C)'); showSchoolLogo('school1', 'https://www.towson.edu/')">
+                <label for="school1">TU</label>
+
+                <input type="radio" id="school2" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #E03A3E, #000000)'); showSchoolLogo('school2', 'https://www.umd.edu/')">
+                <label for="school2">UMD</label>
+
+                <input type="radio" id="school3" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #fdb515, #000000)'); showSchoolLogo('school3', 'https://umbc.edu/')">
                 <label>UMBC</label>
-                <input type="radio" id="school4" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #73B0E4, #231F20)')">
+
+
+                <input type="radio" id="school4" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #73B0E4, #231F20)'); showSchoolLogo('school4', 'https://www.jhu.edu/')">
                 <label>JHU</label>
-                <input type="radio" id="school5" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #1B4383, #000000)')">
+
+
+                <input type="radio" id="school5" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #1B4383, #000000)'); showSchoolLogo('school5', 'https://www.morgan.edu/')">
                 <label>MSU</label>
+
             </div>
         </div>
         
@@ -104,8 +113,25 @@
             document.body.style.backgroundImage = color;
             localStorage.setItem('selectedColor', color);
         }
-    </script>
 
+        function showSchoolLogo(schoolId, link) {
+            var selectedSchoolId = document.querySelector('input[name="school"]:checked').id;
+            localStorage.setItem('selectedSchool', selectedSchoolId);
+            
+            var logoContainer = document.getElementById('logoContainer');
+            logoContainer.innerHTML = '';
+
+            var img = document.createElement('img');
+            img.src = 'SchoolLogos/' +  selectedSchoolId + '_logo.png';
+            img.alt = selectedSchoolId + ' logo';
+            logoContainer.appendChild(img);
+
+            // Redirect to the school's website
+            document.getElementById('logoContainer').addEventListener('click', function() {
+                window.location.href = link;
+            });
+        }
+    </script>
 </body>
 
 </html>
