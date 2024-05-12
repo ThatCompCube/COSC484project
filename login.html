@@ -25,6 +25,11 @@
             </div>
         </form>
     </div>
+    <div class="registerRow">
+        <div class="register">
+            <input type="button" onclick="continueToRegistration()" value="Register"/>
+        </div>
+    </div>
 </body>
 
 <script>
@@ -57,6 +62,10 @@
             console.error('Login form not found!');
         }
     });
+
+    function continueToRegistration() {
+        window.location.href = 'registration.html';
+    }
     </script>
     
     

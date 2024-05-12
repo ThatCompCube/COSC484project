@@ -22,6 +22,19 @@
     box-sizing: border-box;
 }
 
+.register {
+    margin-bottom: 20px;
+    position:absolute;
+    right:0;
+    bottom:0;
+}
+
+
+.register input {
+    width: 100%;
+    padding: 10px;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #b5b5b5;
