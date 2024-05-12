@@ -134,6 +134,61 @@
         function goBack() {
             window.history.back();
         }
+
+        //Search results for Universities
+        var schools = [
+            { name: 'Towson University', link: 'schoolPage.html'},
+            { name: 'University of Maryland', link: 'schoolPage.html'},
+            { name: 'University of Maryland, Baltimore County', link: 'schoolPage.html'},
+            { name: 'John Hopkins University', link: 'schoolPage.html'},
+            { name: 'Morgan State University', link: 'schoolPage.html'}
+        ]
+
+        const searchInput = document.querySelector('.schoolInput')
+        searchInput.addEventListener("input", (e) =>{
+            let value = e.target.value
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+
+                setList(schools.filter(school => {
+                    return school.name.trim().toLowerCase().includes(value)
+                }))
+            }
+            else{
+                clearList()
+            }
+        })
+
+        function setList(results){
+            clearList()
+            for (const schools of results){
+                const resultItem = document.createElement('a')
+                resultItem.classList.add('school-item')
+                const text = document.createTextNode(schools.name)
+                resultItem.appendChild(text)
+                resultItem.href = schools.link
+                list.appendChild(resultItem)
+            }
+
+            if (results.length === 0 ){
+                noResults()
+            }
+        }
+
+        function noResults(){
+            const error = document.createElement('a')
+            error.classList.add('error-message')
+            const text = document.createTextNode('No results found.')
+            error.appendChild(text)
+            list.appendChild(error)
+        }
+
+        function clearList(){
+            while (list.firstChild){
+                list.removeChild(list.firstChild)
+            }
+        }
     </script>
 </body>
 </html>
