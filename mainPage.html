@@ -84,13 +84,11 @@
 
     <!-- School images -->
     <div id = "school-image" class="school-image">
-        <!--\
-        <div id = "TU">TOWSON<img src="Towson.png"></div>
-        <div id = "UMD"><img src="UMD.png"></div>
-            <div id = "UMBC"><img src="UMBC.png"> </div>
-            <div id = "JHU"><img src="JHU.png"></div>
-            <div id = "MSU"><img src="MSU.png"></div>
-            -->
+        <div id = "school1"><img src="SchoolLogos/school1_logo.png"></div>
+        <div id = "school2"><img src="SchoolLogos/school2_logo.png"></div>
+        <div id = "school3"><img src="SchoolLogos/school3_logo.png"> </div>
+        <div id = "school4"><img src="SchoolLogos/school4_logo.png"></div>
+        <div id = "school5"><img src="SchoolLogos/school5_logo.png"></div>
     </div>
 
     <script>
@@ -105,6 +103,8 @@
                     document.getElementById('profile-name').textContent = `Name: ${data.firstName} ${data.lastName}`;
                     document.getElementById('profile-email').textContent = `Email: ${data.username}`;
                     document.getElementById('profile-school').textContent = `School: ${data.school}`;
+
+                    loadSchoolImage(data.school);
                 })
                 .catch(error => {
                     console.error('Error fetching profile:', error);
@@ -125,17 +125,12 @@
 
         // Load school image based on option
         function loadSchoolImage(){
-            var selectedSchool = localStorage.getItem('school');
-            console.log(selectedSchool); // Check if the correct school is retrieved from localStorage
-
-            var allSchools = document.querySelectorAll('.school-image > div');
-            allSchools.forEach(function(school) {
-                if (school.id === selectedSchool) {
-                    school.style.display = 'block';
-                } else {
-                    school.style.display = 'none';
-                }
-            });
+            var schoolLogo = document.getElementById('school-image');
+            var img = schoolLogo.querySelector(`#${school} img`);
+            if (img) {
+                img.src = `SchoolLogos/${school}_logo.png`;
+                img.alt = `${school} logo`;
+            }
         }
 
         function toggleRegistrationInfo() {
@@ -164,58 +159,6 @@
             window.history.back();
         }
         
-        const schools = [
-            { name: 'Towson University'},
-            { name: 'University of Maryland'},
-            { name: 'University of Maryland, Baltimore County'},
-            { name: 'John Hopkins University'},
-            { name: 'Morgan State University'}
-        ]
-
-        const searchInput = document.querySelector('.schoolInput')
-        searchInput.addEventListener("input", (e) =>{
-            let value = e.target.value
-
-            if(value && value.trim().length > 0){
-                value = value.trim().toLowerCase()
-                
-                setList(schools.filter(school => {
-                    return school.name.trim().toLowerCase().includes(value)
-                }))
-            }
-            else{
-                clearList()
-            }
-        })
-
-        function setList(results){
-            clearList()
-            for (const schools of results){
-                const resultItem = document.createElement('li')
-                resultItem.classList.add('school-item')
-                const text = document.createTextNode(schools.name)
-                resultItem.appendChild(text)
-                list.appendChild(resultItem)
-            }
-
-            if (results.length === 0 ){
-                noResults()
-            }
-        }
-
-        function noResults(){
-            const error = document.createElement('li')
-            error.classList.add('error-message')
-            const text = document.createTextNode('No results found.')
-            error.appendChild(text)
-            list.appendChild(error)
-        }
-
-        function clearList(){
-            while (list.firstChild){
-                list.removeChild(list.firstChild)
-            }
-        }
     </script>
 </body>
 </html>
