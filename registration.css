@@ -1,3 +1,21 @@
+#logoContainer {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+.logo-link {
+    display: block; /* Make the link fill the container */
+    width: 100px; /* Set a fixed width for the logos */
+    height: 100px; /* Set a fixed height for the logos */
+}
+
+.logo-link img {
+    width: 100%; /* Ensure the image fills the link */
+    height: 100%; /* Ensure the image fills the link */
+    object-fit: contain; /* Keep the aspect ratio of the image */
+}
+
 form {
     width: 400px;
     margin: 0 auto;
@@ -21,6 +39,7 @@ form {
     padding: 5px;
     box-sizing: border-box;
 }
+
 body {
     font-family: Arial, sans-serif;
     background-color: #b5b5b5;
@@ -28,7 +47,7 @@ body {
     padding: 0;
     display: flex;
     align-items: center;
-    height:100vh;
+    height: 100vh;
 }
 
 .container {

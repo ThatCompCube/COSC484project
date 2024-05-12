@@ -1,118 +1,83 @@
+<!-- registration.html -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>Registration</title>
     <link rel="stylesheet" href="registration.css">
-    <!-- Favicon -->
     <link rel="icon" href="Favicon 1.png" type="image/png">
 </head>
-
 <body>
-    <form id="registrationForm" method="GET">
+    <div id="logoContainer"></div>
+
+    <form id="registrationForm" action="http://localhost:3000/register" method="post">
         <h1>Registration</h1>
         <div class="form-group">
             <label for="firstName">First name:</label>
-            <input type="text" id="firstName" />
+            <input type="text" id="firstName" name="firstName" required />
         </div>
         <div class="form-group">
             <label for="lastName">Last name:</label>
-            <input type="text" id="lastName" />
+            <input type="text" id="lastName" name="lastName" required />
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="text" id="email" />
+            <input type="email" id="email" name="username" required /> 
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" id="password" />
+            <input type="password" id="password" name="password" required />
         </div>
         <div class="form-group">
             <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" />
+            <input type="password" id="confirmPassword" name="confirmPassword" required />
         </div>
         <div class="form-group">
             <label>School Attending:</label>
             <div class="radio-container">
-                <input type="radio" id="TU" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #FFBB00, #3C3C3C)')">
-                <label for = "TU">TU</label>
-                <input type="radio" id="UMD" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #E03A3E, #000000)')">
-                <label for = "UMD">UMD</label>
-                <input type="radio" id="UMBC" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #fdb515, #000000)')">
-                <label for = "UMBC">UMBC</label>
-                <input type="radio" id="JHU" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #73B0E4, #231F20)')">
-                <label for = "JHU">JHU</label>
-                <input type="radio" id="MSU" name="school" onchange="changeBackgroundColor('linear-gradient(to bottom right, #1B4383, #000000)')">
-                <label for = "MSU">MSU</label>
+                <input type="radio" id="school1" name="school" value="TU" onchange="updateUI('school1', 'https://www.towson.edu/')" required>
+                <label for="school1">TU</label>
+
+                <input type="radio" id="school2" name="school" value="UMD" onchange="updateUI('school2', 'https://www.umd.edu/')" required>
+                <label for="school2">UMD</label>
+
+                <input type="radio" id="school3" name="school" value="UMBC" onchange="updateUI('school3', 'https://umbc.edu/')" required>
+                <label for="school3">UMBC</label>
+
+                <input type="radio" id="school4" name="school" value="JHU" onchange="updateUI('school4', 'https://www.jhu.edu/')" required>
+                <label for="school4">JHU</label>
+
+                <input type="radio" id="school5" name="school" value="MSU" onchange="updateUI('school5', 'https://www.morgan.edu/')" required>
+                <label for="school5">MSU</label>
             </div>
         </div>
-        
         <div class="form-group">
             <input type="submit" id="register" value="Register" />
         </div>
     </form>
 
     <script>
-        document.getElementById("registrationForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent form submission
+        function updateUI(schoolId, schoolLink) {
+            var colorMapping = {
+                'school1': 'linear-gradient(to bottom right, #FFBB00, #3C3C3C)',
+                'school2': 'linear-gradient(to bottom right, #E03A3E, #000000)',
+                'school3': 'linear-gradient(to bottom right, #fdb515, #000000)',
+                'school4': 'linear-gradient(to bottom right, #73B0E4, #231F20)',
+                'school5': 'linear-gradient(to bottom right, #1B4383, #000000)'
+            };
+            document.body.style.backgroundImage = colorMapping[schoolId];
 
-            var passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[_*\\,.!])[a-zA-Z\d_*\\,.!]+$/;
-            var firstName = document.getElementById("firstName").value.trim();
-            var lastName = document.getElementById("lastName").value.trim();
-            var email = document.getElementById("email").value.trim();
-            var password = document.getElementById("password").value;
-            var confirmPassword = document.getElementById("confirmPassword").value;
-            var schoolChecked = document.querySelector('input[name="school"]:checked');
+            var logoContainer = document.getElementById('logoContainer');
+            logoContainer.innerHTML = ''; // Clear previous logos
 
-            // New school variable
-            //var TUschool = document.getElementById("TU").value.trim();
-            var school = document.querySelector('input[name="school"]:checked').value.trim();
+            var img = document.createElement('img');
+            img.src = 'SchoolLogos/' + schoolId + '_logo.png';
+            img.alt = schoolId + ' logo';
+            logoContainer.appendChild(img);
 
-            // Check if any field is empty
-            if (firstName === "" || lastName === "" || email === "" || password === "" || confirmPassword === "" || !schoolChecked) {
-                alert("Please fill in all fields.");
-                return false;
-            }
-
-            // Check if email is valid
-            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!email.match(emailRegex)) {
-                alert("Please enter a valid email address.");
-                return false;
-            }
-
-            // Check if passwords match
-            if (password !== confirmPassword) {
-                alert("Please ensure the passwords match.");
-                return false;
-            }
-
-            // Check if password meets requirements
-            if (!password.match(passwordRegex)) {
-                alert("Password must contain at least one letter, one number, and one special symbol.");
-                return false;
-            }
-
-            // Store registration information in local storage
-            localStorage.setItem('firstName', firstName);
-            localStorage.setItem('lastName', lastName);
-            localStorage.setItem('email', email);
-            // New
-            localStorage.setItem('TU',TUschool);
-            localStorage.setItem('school',school);
-
-            // Redirect to the terms of service page
-            window.location.href = "tos.html";
-        });
-
-        function changeBackgroundColor(color) {
-            document.body.style.backgroundImage = color;
-            localStorage.setItem('selectedColor', color);
+            logoContainer.onclick = function() { window.location.href = schoolLink; };
         }
     </script>
-
 </body>
-
 </html>
