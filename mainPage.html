@@ -46,6 +46,9 @@
         #registration-info button {
             margin-top: 10px;
         }
+        #school-image{
+            display: block;
+        }
     </style>
 </head>
 
@@ -93,12 +96,38 @@
         <button onclick="signOut()">Sign out</button>
     </div>
 
+    <!-- School images -->
+    <div id = "school-image" class="school-image">
+        <!--\
+        <div id = "TU">TOWSON<img src="Towson.png"></div>
+        <div id = "UMD"><img src="UMD.png"></div>
+            <div id = "UMBC"><img src="UMBC.png"> </div>
+            <div id = "JHU"><img src="JHU.png"></div>
+            <div id = "MSU"><img src="MSU.png"></div>
+            -->
+    </div>
+
     <script>
         function loadBackgroundColor() {
             var selectedColor = localStorage.getItem('selectedColor');
             if (selectedColor) {
                 document.body.style.backgroundImage = selectedColor;
             }
+        }
+
+        // Load school image based on option
+        function loadSchoolImage(){
+            var selectedSchool = localStorage.getItem('school');
+            console.log(selectedSchool); // Check if the correct school is retrieved from localStorage
+
+            var allSchools = document.querySelectorAll('.school-image > div');
+            allSchools.forEach(function(school) {
+                if (school.id === selectedSchool) {
+                    school.style.display = 'block';
+                } else {
+                    school.style.display = 'none';
+                }
+            });
         }
 
         function toggleRegistrationInfo() {
@@ -199,6 +228,10 @@
                 list.removeChild(list.firstChild)
             }
         }
+
+        
+
+
     </script>
 
 </body>

@@ -67,3 +67,10 @@ button[type="submit"]:hover {
 .button:hover {
     background-color: #0056b3;
 }
+
+#school-image{
+    width: 200px;
+    height: 100px;
+    left: 50%;
+    transform: translate(-50%)
+}
