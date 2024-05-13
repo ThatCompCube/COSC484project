@@ -124,7 +124,7 @@
         }
 
         // Load school image based on option
-        function loadSchoolImage(){
+        function loadSchoolImage(school) {
             var schoolLogo = document.getElementById('school-image');
             var img = schoolLogo.querySelector(`#${school} img`);
             if (img) {
@@ -165,54 +165,80 @@
             { name: 'Teacher C', school: 'UMBC', temp: 4},
             { name: 'Teacher D', school: 'JHU', temp: 5},
             { name: 'Teacher E', school: 'MSU', temp: 2}
-        ]
+        ];
 
-        const searchInput = document.querySelector('.teacherInput')
-        searchInput.addEventListener("input", (e) =>{
-            let value = e.target.value
+        const schools = ['TU', 'UMD', 'UMBC', 'JHU', 'MSU']; // List of schools
 
-            if(value && value.trim().length > 0){
-                value = value.trim().toLowerCase()
+        const searchInput = document.querySelector('.schoolInput'); // Select the school input field
+        searchInput.addEventListener("input", (e) => {
+            let value = e.target.value.trim().toUpperCase(); // Trim and convert to uppercase
 
-                setList(teachers.filter(teacher => {
-                    return teacher.name.trim().toLowerCase().includes(value)
-                }))
+            if (value && value.length > 0) {
+                setList(schools.filter(school => school.startsWith(value)));
+            } else {
+                clearList();
             }
-            else{
-                clearList()
-            }
-        })
+        });
 
-        function setList(results){
-            clearList()
-            for (const profs of results){
-                const resultItem = document.createElement('a')
-                resultItem.classList.add('prof-item')
-                const text = document.createTextNode(profs.name)
-                resultItem.appendChild(text)
-                resultItem.href = 'professor page.html';
-                list.appendChild(resultItem)
-            }
+        function setList(results) {
+            clearList();
+            results.forEach(school => {
+                const resultItem = document.createElement('a');
+                resultItem.classList.add('school-item');
+                const text = document.createTextNode(school);
+                resultItem.appendChild(text);
+                resultItem.href = getSchoolWebsite(school); // Get the school website
+                const listItem = document.createElement('li'); // Create list item
+                listItem.appendChild(resultItem); // Append school link to list item
+                list.appendChild(listItem); // Append list item to list
 
-            if (results.length === 0 ){
-                noResults()
+                // Display teachers for each school
+                displayTeachers(school);
+            });
+
+            if (results.length === 0) {
+                noResults();
+            }
+        }
+
+        function noResults() {
+            const error = document.createElement('li');
+            error.classList.add('error-message');
+            const text = document.createTextNode('No results found.');
+            error.appendChild(text);
+            list.appendChild(error);
+        }
+
+        function clearList() {
+            while (list.firstChild) {
+                list.removeChild(list.firstChild);
             }
         }
 
-        function noResults(){
-            const error = document.createElement('a')
-            error.classList.add('error-message')
-            const text = document.createTextNode('No results found.')
-            error.appendChild(text)
-            list.appendChild(error)
+        function displayTeachers(school) {
+            const filteredTeachers = teachers.filter(teacher => teacher.school === school);
+            const teacherList = document.createElement('ul');
+            filteredTeachers.forEach(teacher => {
+                const teacherItem = document.createElement('li');
+                const teacherLink = document.createElement('a'); // Create anchor element
+                teacherLink.textContent = teacher.name; // Set anchor text
+                teacherLink.href = 'professor page.html'; // Set anchor href
+                teacherItem.appendChild(teacherLink); // Append anchor to list item
+                teacherList.appendChild(teacherItem); // Append list item to list
+            });
+            list.appendChild(teacherList);
         }
 
-        function clearList(){
-            while (list.firstChild){
-                list.removeChild(list.firstChild)
-            }
+        function getSchoolWebsite(school) {
+            const schoolWebsites = {
+                'TU': 'https://www.towson.edu/',
+                'UMD': 'https://www.umd.edu/',
+                'UMBC': 'https://umbc.edu/',
+                'JHU': 'https://www.jhu.edu/',
+                'MSU': 'https://www.morgan.edu/'
+            };
+            return schoolWebsites[school] || '#'; // Return '#' if website not found
         }
-        
     </script>
 </body>
 </html>
