@@ -67,13 +67,13 @@
                 <input type="text" id="school-search-input" class="schoolInput" placeholder="Search for a school">
                 <button type="Submit">Search Schools</button>
             </form>
-            <div class="school-container">
-                <ul class="school-list" id="list"></ul>
-            </div>
             <form id="professor-search-form">
-                <input type="text" id="professor-search-input" placeholder="Search for a professor">
+                <input type="text" id="professor-search-input" class="teacherInput" placeholder="Search for a professor">
                 <button type="Submit">Search Professors</button>
             </form>
+            <div class="teacher-container">
+                <ul class="teacher-list" id="list"></ul>
+            </div>
         </header>
 
         <div class="button-container">
@@ -104,7 +104,7 @@
                     document.getElementById('profile-email').textContent = `Email: ${data.username}`;
                     document.getElementById('profile-school').textContent = `School: ${data.school}`;
 
-                    loadSchoolImage(data.school);
+                    //loadSchoolImage(data.school);
                 })
                 .catch(error => {
                     console.error('Error fetching profile:', error);
@@ -157,6 +157,60 @@
 
         function goBack() {
             window.history.back();
+        }
+
+        const teachers = [
+            { name: 'Teacher A', school: 'TU', temp: 1 },
+            { name: 'Teacher B', school: 'UMD', temp: 3},
+            { name: 'Teacher C', school: 'UMBC', temp: 4},
+            { name: 'Teacher D', school: 'JHU', temp: 5},
+            { name: 'Teacher E', school: 'MSU', temp: 2}
+        ]
+
+        const searchInput = document.querySelector('.teacherInput')
+        searchInput.addEventListener("input", (e) =>{
+            let value = e.target.value
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+
+                setList(teachers.filter(teacher => {
+                    return teacher.name.trim().toLowerCase().includes(value)
+                }))
+            }
+            else{
+                clearList()
+            }
+        })
+
+        function setList(results){
+            clearList()
+            for (const profs of results){
+                const resultItem = document.createElement('a')
+                resultItem.classList.add('prof-item')
+                const text = document.createTextNode(profs.name)
+                resultItem.appendChild(text)
+                resultItem.href = 'professor page.html';
+                list.appendChild(resultItem)
+            }
+
+            if (results.length === 0 ){
+                noResults()
+            }
+        }
+
+        function noResults(){
+            const error = document.createElement('a')
+            error.classList.add('error-message')
+            const text = document.createTextNode('No results found.')
+            error.appendChild(text)
+            list.appendChild(error)
+        }
+
+        function clearList(){
+            while (list.firstChild){
+                list.removeChild(list.firstChild)
+            }
         }
         
     </script>

@@ -1,5 +1,14 @@
+var profName = "Jal Irani"
+var profTemp = 2
+
+// function fetchName() {
+//   var name = document.querySelector('.ProfessorName')
+//   name.appendChild(profData.name)
+// }
+
 function setStars(rating) {
     var starRating = document.querySelector('.star-rating');
+
     starRating.innerHTML = ''; // Clear existing stars
     for (var i = 1; i <= 5; i++) {
       var star = document.createElement('span');
@@ -64,7 +73,7 @@ ratingPercent();
 
 function createUniversityLink() {
   var temp = 2;
-  //temp = profdata.school; Get data from database here
+  temp = profTemp
   if (temp === 1) {
     var link = document.createElement("a");
     link.href = "https://towson.edu";
@@ -96,4 +105,7 @@ function createUniversityLink() {
 
 
 // Call the function and append the created link to the UniLink element
+var nameProf = document.createElement("h3")
+nameProf.textContent = profName
 document.getElementById("UniLink").appendChild(createUniversityLink());
+document.getElementById("ProfessorName").appendChild(nameProf);
