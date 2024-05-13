@@ -66,9 +66,17 @@ function openRemoveReviewSection(index) {
         if (reason !== 'select') {
             removeReview(index, reason);
             section.style.display = 'none';
+            // Send email notification
+            var subject = "Review Removed";
+            var text = `The review for ${profName} has been removed due to: ${reason}`;
+            sendEmail(subject, text);
         }
     };
 }
+
+// Example usage:
+reviews = fetchReviews("professorId"); // Fetch reviews for a professor
+populateReviews(reviews); // Populate the review section with fetched reviews
 
 // Function to remove a review
 function removeReview(index, reason) {

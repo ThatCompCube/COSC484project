@@ -92,7 +92,7 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+                document.addEventListener('DOMContentLoaded', function () {
             const token = localStorage.getItem('token');
             if (token) {
                 axios.get('http://localhost:3000/profile', {
@@ -104,7 +104,11 @@
                     document.getElementById('profile-email').textContent = `Email: ${data.username}`;
                     document.getElementById('profile-school').textContent = `School: ${data.school}`;
 
-                    //loadSchoolImage(data.school);
+                    // Set the user's email as receiverEmail
+                    const receiverEmail = data.username;
+
+                    // Call the function to send email
+                    sendEmail(receiverEmail);
                 })
                 .catch(error => {
                     console.error('Error fetching profile:', error);
@@ -114,6 +118,14 @@
                 window.location.href = 'login.html';
             }
         });
+
+        // Function to send email
+        function sendEmail(receiverEmail) {
+            // Your email sending logic here
+            // Use receiverEmail as the receiver email address
+            // Example:
+            console.log('Email sent to:', receiverEmail);
+        }
 
         // Additional JavaScript from the second HTML
         function loadBackgroundColor() {
