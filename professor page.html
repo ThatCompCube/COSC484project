@@ -6,7 +6,6 @@
     <title>Professor</title>
     <link rel="stylesheet" href="professor css.css">
     <link rel="icon" href="Favicon 1.png" type="image/png">
-    
 </head>
 
 <body>
@@ -32,26 +31,27 @@
                 <div class="percentage" id="ratingPercentage"></div>
                 <div class="recommendation">Would Recommend</div>
             </div>
-            
-        </div>
-        
-        
+        </div>  
     </div>
-   
 
-     <div class="ReviewSection">
+    <div class="ReviewSection">
         <h2>Reviews</h2>
         <ul class="ReviewList">
-            <li>
-                <div class = "ReviewInfo" >
-                    <div class = "RatingHeader" id="RatingHeader"></div>
-                    <div class="courseMeta" id="courseMeta"></div>
-                    <div class = "Comment" id="Comment"></div>
-                </div>
-                
-            </li>
-            
+            <!-- Reviews will be dynamically populated here -->
         </ul>
+    </div>
+
+    <div class="remove-review-section" style="display: none;">
+        <h2>Reason for Removal</h2>
+        <label for="reason-select">Select reason:</label>
+        <select id="reason-select">
+            <option value="select">Select reason</option>
+            <option value="profanity">Profanity</option>
+            <option value="spam">Spam</option>
+            <option value="irrelevant">Irrelevant</option>
+            <option value="other">Other</option>
+        </select>
+        <button class="submit-btn">Submit</button>
     </div>
 
     <script src="professor js.js"></script>
